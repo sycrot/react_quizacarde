@@ -1,11 +1,13 @@
 import * as C from './App.styles'
+import { FormProvide } from './contexts/GameContext'
 import { Router } from './router'
 
 const App = () => {
     return (
-        <C.Container>
+        <FormProvide>
             <Router />
-        </C.Container>
+        </FormProvide>
+        
     )
 }
 

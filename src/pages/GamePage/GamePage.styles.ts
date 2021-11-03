@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
+    width: 100%;
     height: 100vh;
     background: #a6a6f2;
     padding: 50px 0;
@@ -16,11 +17,20 @@ export const Lifes = styled.div`
     width: 140px;
     display: flex;
     justify-content: flex-end;
+    align-items: center;
     margin-right: 20vmax;
 `
 export const LifeItem = styled.p`
     font-size: 2em;
     z-index: 2;
+`
+export const BgLifes = styled.div`
+    display: flex;
+    z-index: 1;
+    position: absolute;
+`
+export const BgLifeItem = styled.p`
+    font-size: 2em;
 `
 
 export const TitleLogo = styled.h1`

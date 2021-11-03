@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router'
+import { Header } from '../../components/Header/Header'
 import { QuestionItem } from '../../components/QuestionItem/QuestionItem'
+import { FormActions, useForm } from '../../contexts/GameContext'
 import { getQuestions } from '../../data/Questions'
 import { Question } from '../../types/Question'
 import * as C from './GamePage.styles'
@@ -11,6 +13,7 @@ export const GamePage = () => {
     const [lifes, setLifes] = useState(3)
     const [answer, setAnswer] = useState() as any
     const history = useHistory()
+    const { state, dispatch } = useForm()
 
     useEffect(() => {
         const getListQuestions = () => {
@@ -21,8 +24,11 @@ export const GamePage = () => {
 
     useEffect(() => {
         const handleGameOver = () => {
-            console.log(lifes)
             if (lifes === 0) {
+                dispatch({
+                    type: FormActions.setPoints,
+                    payload: questions.filter(e => e.point_question === true).length
+                })
                 setTimeout(() => {
                     history.push('/gameover')
                 }, 1000)
@@ -32,16 +38,22 @@ export const GamePage = () => {
     }, [lifes])
 
     const handleNextQuestion = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
-        if (questions[numQuestion].answer_option !== questions[numQuestion].correct_answer) {
-            setLifes(lifes-1)
-            answer.target.style.outline = '5px solid #b3261a'
+        if (questions[numQuestion].answer_option === '') {
+            alert('Selecion uma opcao')
         } else {
-            answer.target.style.outline = '5px solid #308613'
+            e.currentTarget.style.pointerEvents = 'none'
+            if (questions[numQuestion].answer_option !== questions[numQuestion].correct_answer) {
+                setLifes(lifes-1)
+                answer.target.style.outline = '5px solid #b3261a'
+            } else {
+                answer.target.style.outline = '5px solid #308613'
+            }
+            setTimeout((el:any = e) => {
+                let num = numQuestion
+                setNumQuestion(num+=1)
+                el.target.style.pointerEvents = 'all'
+            }, 1000)
         }
-        setTimeout(() => {
-            let num = numQuestion
-            setNumQuestion(num+=1)
-        }, 1000)
     }
 
     const handleClickAnswer = (e: React.FormEvent<HTMLElement>) => {
@@ -83,19 +95,28 @@ export const GamePage = () => {
         return lifesArr
     }
 
-    return (
-        <C.Container>
-            <C.Header>
-                <C.TitleLogo>Quiz Acarde</C.TitleLogo>
-                <C.Lifes>
+    const handleElementLifes = () => {
+        return (
+            <C.Lifes>
+                {
+                    handleLifes().map((item:any) => (
+                        <C.LifeItem>{item}</C.LifeItem>
+                    ))
+                }
+                <C.BgLifes>
                     {
-                        handleLifes().map((item:any, index:any) => (
-                            <C.LifeItem>{item}</C.LifeItem>
+                        handleBgLifes().map((item:any) => (
+                            <C.BgLifeItem>{item}</C.BgLifeItem>
                         ))
                     }
-                </C.Lifes>
-            </C.Header>
-            <C.SeparatorLine></C.SeparatorLine>
+                </C.BgLifes>
+            </C.Lifes>
+        )
+    }
+
+    return (
+        <C.Container>
+            <Header lifes={handleElementLifes}/>
             <C.Questions>
                 {
                     <QuestionItem question={questions[numQuestion]} key={numQuestion} onChange={handleTrue}/>
