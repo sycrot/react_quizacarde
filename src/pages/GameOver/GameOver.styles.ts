@@ -50,3 +50,18 @@ export const Icon = styled.p`
     padding: 0;
     font-size: 6em;
 `
+
+export const ButtonNewGame = styled.div`
+    text-align: center;
+    padding: 25px;
+    background: #138660;
+    border-radius: 0 0 10px 10px;
+    cursor: pointer;
+
+    color: #fff;
+    text-transform: uppercase;
+
+    &:hover {
+        background: #0d5940;
+    }
+`

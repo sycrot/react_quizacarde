@@ -81,6 +81,31 @@ export const Questions = [
         answers: ['Pink Floyd', 'Nirvana', 'AC/DC'],
         correct_answer: 'The Doors',
     },
+    {
+        question: 'Quem foi a primeira pessoa a viajar no Espaço?',
+        answers: ['A cadela Laika', 'Neil Armstrong', 'Marcos Pontes'],
+        correct_answer: 'Yuri Gagarin',
+    },
+    {
+        question: 'Qual a montanha mais alta do mundo?',
+        answers: ['Mauna Kea', 'Pico da Neblina', 'Monte Chimborazo'],
+        correct_answer: 'Monte Everest',
+    },
+    {
+        question: 'Que país tem o formato de uma bota?',
+        answers: ['Butão', 'Brasil', 'Portugal'],
+        correct_answer: 'Itália',
+    },
+    {
+        question: 'Quanto tempo a Terra demora para dar uma volta completa em torno dela mesma?',
+        answers: ['365 dias', '7 dias', '30 ou 31 dias'],
+        correct_answer: 'Aproximadamente 24 horas',
+    },
+    {
+        question: 'Quantos ossos temos no nosso corpo?',
+        answers: ['126', '208', '205'],
+        correct_answer: '206',
+    },
 ]
 
 export const getQuestions = () => {
@@ -97,11 +122,23 @@ export const getQuestions = () => {
         list.push({
             id: index,
             question: item.question,
-            answers,
+            answers: getRandom(answers),
             correct_answer: item.correct_answer,
             answer_option: '',
             point_question: false
         })
     })
-    return list
+    return getRandom(list)
+}
+
+const getRandom = (answers: any) => {
+    for(let i = answers.length - 1; i > 0; i--) {
+        let j = Math.floor(Math.random() * (i+1))
+        let temp = answers[i]
+
+        answers[i] = answers[j]
+        answers[j] = temp
+    }
+
+    return answers
 }

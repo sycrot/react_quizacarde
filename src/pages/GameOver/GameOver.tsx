@@ -1,9 +1,11 @@
+import { useHistory } from 'react-router'
 import { Header } from '../../components/Header/Header'
 import { useForm } from '../../contexts/GameContext'
 import * as C from './GameOver.styles'
 
 export const GameOver = () => {
     const {state, dispatch} = useForm()
+    const history = useHistory()
 
     const handleLifes = () => {
         return null
@@ -41,12 +43,18 @@ export const GameOver = () => {
         }
     }
 
+    const handleNewGame = () => {
+        history.push('/gamepage')
+    }
+
     return (
         <C.Container>
             <Header lifes={handleLifes}/>
             <C.Points>
                 <C.Text>Fim do jogo</C.Text>
                 {handleIcons()}
+                <C.ButtonNewGame onClick={handleNewGame}>Novo jogo
+                </C.ButtonNewGame>
             </C.Points>
         </C.Container>
     )
