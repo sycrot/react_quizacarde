@@ -6,6 +6,23 @@ export const Container = styled.div`
     padding: 50px 0;
 `
 
+export const Header = styled.div`
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+`
+export const Lifes = styled.div`
+    width: 140px;
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 20vmax;
+`
+export const LifeItem = styled.p`
+    font-size: 2em;
+    z-index: 2;
+`
+
 export const TitleLogo = styled.h1`
     margin: 0;
     padding: 0;
