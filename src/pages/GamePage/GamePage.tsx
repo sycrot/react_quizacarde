@@ -25,10 +25,6 @@ export const GamePage = () => {
     useEffect(() => {
         const handleGameOver = () => {
             if (lifes === 0) {
-                dispatch({
-                    type: FormActions.setPoints,
-                    payload: questions.filter(e => e.point_question === true).length
-                })
                 setTimeout(() => {
                     history.push('/gameover')
                 }, 1000)
@@ -38,6 +34,10 @@ export const GamePage = () => {
     }, [lifes])
 
     const handleNextQuestion = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
+        dispatch({
+            type: FormActions.setPoints,
+            payload: questions.filter(e => e.point_question === true).length
+        })
         if (questions[numQuestion].answer_option === '') {
             alert('Selecion uma opcao')
         } else {
@@ -114,15 +114,29 @@ export const GamePage = () => {
         )
     }
 
+    const handleHome = () => {
+        history.push('/')
+    }
+
+    const handleReset = () => {
+        window.location.reload()
+    }
+
     return (
         <C.Container>
-            <Header lifes={handleElementLifes}/>
-            <C.Questions>
-                {
-                    <QuestionItem question={questions[numQuestion]} key={numQuestion} onChange={handleTrue}/>
-                }
-                <C.ButtonNext onClick={e => handleNextQuestion(e)}>Next</C.ButtonNext>
-            </C.Questions>
+            <Header lifes={handleElementLifes} points={state.points}/>
+            <C.GameContainer>
+                <C.Actions>
+                    <C.BtnAction onClick={handleHome}>🏠<p>Início</p></C.BtnAction>
+                    <C.BtnAction onClick={handleReset}>🔄<p>Reiniciar</p></C.BtnAction>
+                </C.Actions>
+                <C.Questions>
+                    {
+                        <QuestionItem question={questions[numQuestion]} key={numQuestion} onChange={handleTrue}/>
+                    }
+                    <C.ButtonNext onClick={e => handleNextQuestion(e)}>Next</C.ButtonNext>
+                </C.Questions>
+            </C.GameContainer>
         </C.Container>
     )
 }

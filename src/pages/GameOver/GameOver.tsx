@@ -43,8 +43,8 @@ export const GameOver = () => {
         }
     }
 
-    const handleNewGame = () => {
-        history.push('/gamepage')
+    const handlePage = (page: string) => {
+        history.push(page)
     }
 
     return (
@@ -53,7 +53,8 @@ export const GameOver = () => {
             <C.Points>
                 <C.Text>Fim do jogo</C.Text>
                 {handleIcons()}
-                <C.ButtonNewGame onClick={handleNewGame}>Novo jogo
+                <C.ButtonHome onClick={e => handlePage('/')}>Início</C.ButtonHome>
+                <C.ButtonNewGame onClick={e => handlePage('/gamepage')}>Novo jogo
                 </C.ButtonNewGame>
             </C.Points>
         </C.Container>

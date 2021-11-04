@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Container = styled.div`
     width: 100%;
     height: 100vh;
-    background: #a6a6f2;
+    background: #4d73e5;
     padding: 50px 0;
     font-family: 'Fredoka One';
 `
@@ -57,11 +57,27 @@ export const ButtonNewGame = styled.div`
     background: #138660;
     border-radius: 0 0 10px 10px;
     cursor: pointer;
+    transition: all 0.2s ease-in;
 
     color: #fff;
     text-transform: uppercase;
 
     &:hover {
         background: #0d5940;
+    }
+`
+
+export const ButtonHome = styled.div`
+    text-align: center;
+    padding: 25px;
+    border-radius: 10px 10px 0 0;
+    cursor: pointer;
+    transition: all 0.2s ease-in;
+
+    color: #fff;
+    text-transform: uppercase;
+
+    &:hover {
+        background: #0d2059;
     }
 `

@@ -1,13 +1,14 @@
 import styled from "styled-components";
 
+/* background: linear-gradient(143deg, #06102d 48%,#131386 48%); */
 export const Container = styled.div`
     width: 100%;
     height: 100vh;
-    background: linear-gradient(143deg, #06102d 48%,#131386 48%);
-    padding: 150px 0;
+    background: #4d73e5;
+    padding: 50px 0;
 `
 
-export const TitleLogo = styled.h1`
+/* export const TitleLogo = styled.h1`
     margin: 0;
     padding: 0;
     font-size: 10vmax;
@@ -20,9 +21,26 @@ export const TitleLogo = styled.h1`
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     color: #fff;
+` */
+
+export const ContainerStart = styled.div`
+    margin: 0;
+    padding: 0;
+    width: 600px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin-left: auto;
+    margin-right: auto;
+    background: linear-gradient(43deg, #06062d 38%,#1a59b3 38%);
+    border-radius: 0 0 10px 10px;
 `
 
 export const ButtonStart = styled.div`
+    margin: 0;
+    padding: 0;
     text-align: center;
     transition: transform 0.1s ease-in-out;
     a {
@@ -34,14 +52,11 @@ export const ButtonStart = styled.div`
         letter-spacing: -0.1em;
         text-decoration: none;
         transition: -webkit-text-stroke 1s ease-in-out;
+        color: #fff;
     }
-    background: linear-gradient(-38deg, #06102d 48%, #131386 48%);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
 
     a:hover {
-        -webkit-text-stroke: 3px #4d59e5;
+        -webkit-text-stroke: 3px #0d2059;
     }
 
     &:active {
